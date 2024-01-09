@@ -1,14 +1,18 @@
 package travelClub;
 
 import travelClub.entity.TravelClub;
+import travelClub.ui.menu.ClubMenu;
 import travelClub.util.DateUtil;
 
 public class StoryAssistant {
-    public static void main(String[] args) {
-        TravelClub newClub = new TravelClub("Jeju Club","Jeju TravelClub");
-        System.out.println(newClub.toString());
-
-        System.out.println(TravelClub.getSample().toString());
-
+    private void startStroy(){
+        ClubMenu clubMenu = new ClubMenu();
+        clubMenu.show();
     }
+
+    public static void main(String[] args) {
+        StoryAssistant assistant = new StoryAssistant();
+        assistant.startStroy();
+    }
+
 }
