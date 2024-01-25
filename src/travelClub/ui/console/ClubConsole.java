@@ -66,6 +66,20 @@ public class ClubConsole {
         }
     }
     public void findByName(){
+        TravelClub[] foundClubs = null;
+        while(true){
+            String clubName = consoleUtil.getValueOf("Club name to find(0.Club Menu)");
+            if(clubName.equals("0")){
+                break;
+            }
+            foundClubs = clubService.findByName(clubName);
 
-    }
+            if(foundClubs != null && foundClubs.length != 0){
+                for(TravelClub club : foundClubs){
+                    System.out.println(club);
+                }
+            }else {
+                System.out.println("Can not find club, Name : "+clubName);
+            }
+    }   }
 }
