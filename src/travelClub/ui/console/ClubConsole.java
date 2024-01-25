@@ -2,6 +2,7 @@ package travelClub.ui.console;
 
 import travelClub.entity.TravelClub;
 import travelClub.service.ClubService;
+import travelClub.service.ServiceLogicLifeCycler;
 import travelClub.service.logic.ClubServiceLogic;
 import travelClub.util.ConsoleUtil;
 
@@ -14,7 +15,7 @@ public class ClubConsole {
 
         this.consoleUtil = new ConsoleUtil();
         //이후 변경 할 코드
-        this.clubService = new ClubServiceLogic();
+        this.clubService = ServiceLogicLifeCycler.getUniqueInstance().getClubService();
     }
     public void register(){
 
