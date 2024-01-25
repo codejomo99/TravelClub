@@ -31,7 +31,15 @@ public class ClubServiceLogic implements ClubService {
 
     @Override
     public TravelClub findById(String clubId) {
-        return null;
+        TravelClub[] createdClubs = Arrays.copyOfRange(clubs, 0, index);
+        TravelClub foundClub = null;
+        for(TravelClub club : createdClubs){
+            if(club.getId().equals(clubId)){
+                foundClub = club;
+                break;
+            }
+        }
+        return foundClub;
     }
 
     @Override
