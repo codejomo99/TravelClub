@@ -2,6 +2,7 @@ package travelClub.ui.console;
 
 import travelClub.entity.TravelClub;
 import travelClub.service.ClubService;
+import travelClub.service.ServiceLogicLifeCycler;
 import travelClub.service.logic.ClubServiceLogic;
 import travelClub.util.ConsoleUtil;
 
@@ -14,7 +15,7 @@ public class ClubConsole {
 
         this.consoleUtil = new ConsoleUtil();
         //이후 변경 할 코드
-        this.clubService = new ClubServiceLogic();
+        this.clubService = ServiceLogicLifeCycler.getUniqueInstance().getClubService();
     }
     public void register(){
 
@@ -123,7 +124,14 @@ public class ClubConsole {
         System.out.println("Modify Club : "+targetClub.toString());
     }
     public void remove(){
-
+        TravelClub targetClub = findOne();
+        String confirmStr = consoleUtil.getValueOf("Remove this club?(Y:yes, N:no)");
+        if(confirmStr.toLowerCase().equals("y") || confirmStr.toLowerCase().equals("yes")){
+            System.out.println("Removing a club -->"+targetClub.getClubName());
+            clubService.remove(targetClub.getId());
+        }else{
+            System.out.println("Remove cancelled, your club is safe. Name:"+targetClub.getClubName());
+        }
     }
 
 }
