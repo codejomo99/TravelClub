@@ -26,7 +26,16 @@ public class ClubServiceLogic implements ClubService {
 
     @Override
     public TravelClub[] findByName(String clubName) {
-        return new TravelClub[0];
+        TravelClub[] createdClubs = Arrays.copyOfRange(clubs, 0, index);
+        TravelClub[] foudClubs = new TravelClub[createdClubs.length];
+        int subIndex = 0;
+        for(TravelClub club : createdClubs){
+            if(club.getClubName().equals(clubName)){
+                foudClubs[subIndex] = club;
+                subIndex++;
+            }
+        }
+        return Arrays.copyOfRange(foudClubs, 0, subIndex);
     }
 
     @Override
@@ -44,7 +53,14 @@ public class ClubServiceLogic implements ClubService {
 
     @Override
     public void modify(TravelClub modifyClub) {
-
+        int foundIndex = 0;
+        for(int i = 0; i < clubs.length; i++){
+            if(clubs[i].getId().equals(modifyClub.getId())){
+                foundIndex = i;
+                break;
+            }
+        }
+        this.clubs[foundIndex] = modifyClub;
     }
 
     @Override
