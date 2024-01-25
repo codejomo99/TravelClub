@@ -4,7 +4,7 @@ import travelClub.entity.TravelClub;
 import travelClub.ui.menu.ClubMenu;
 import travelClub.util.DateUtil;
 
-public class StoryAssistant {
+ public class StoryAssistant {
     private void startStroy(){
         ClubMenu clubMenu = new ClubMenu();
         clubMenu.show();
