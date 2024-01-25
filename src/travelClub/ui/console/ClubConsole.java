@@ -1,14 +1,20 @@
 package travelClub.ui.console;
 
 import travelClub.entity.TravelClub;
+import travelClub.service.ClubService;
+import travelClub.service.logic.ClubServiceLogic;
 import travelClub.util.ConsoleUtil;
 
 public class ClubConsole {
 
     private ConsoleUtil consoleUtil;
 
+    private ClubService clubService;
     public ClubConsole(){
+
         this.consoleUtil = new ConsoleUtil();
+        //이후 변경 할 코드
+        this.clubService = new ClubServiceLogic();
     }
     public void register(){
 
@@ -24,12 +30,22 @@ public class ClubConsole {
             }
 
             TravelClub newClub = new TravelClub(clubName,intro);
+            clubService.register(newClub);
             System.out.println("Registered Club : " + newClub);
         }
 
     }
     public void findAll(){
-        System.out.println("Find All");
+
+        TravelClub[] foundClubs = clubService.findAll();
+        if(foundClubs.length == 0){
+            System.out.println("Empty~~");
+            return;
+        }
+        for(TravelClub club : foundClubs){
+            System.out.println(club.toString());
+        }
+
     }
 
     public void findById(){
