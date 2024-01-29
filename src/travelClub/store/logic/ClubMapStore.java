@@ -57,5 +57,6 @@ public class ClubMapStore implements ClubStore {
     @Override
     public void delete(String clubId) {
         this.clubMap.remove(clubId);
+        this.clubMap.remove(clubMap);
     }
 }
