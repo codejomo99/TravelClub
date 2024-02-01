@@ -3,6 +3,7 @@ import travelClub.entity.TravelClub;
 import travelClub.store.ClubStore;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ClubMapStore implements ClubStore {
 
@@ -25,23 +26,10 @@ public class ClubMapStore implements ClubStore {
 
     @Override
     public List<TravelClub> retireveAllByName(String clubName) {
-        List<TravelClub> foundClubs = new ArrayList<>();
 
-        for(TravelClub club : this.clubMap.values()){
-            if(club.getClubName().equals(clubName)){
-                foundClubs.add(club);
-            }
-        }
-
-//        Iterator<TravelClub> iterator = this.clubMap.values().iterator();
-//        while ((iterator.hasNext())){
-//            TravelClub club = iterator.next();
-//            if(club.getClubName().equals(clubName)){
-//                foundClubs.add(club);
-//            }
-//        }
-
-        return foundClubs;
+        return clubMap.values().stream()
+                .filter(club -> club.getClubName().equals(clubName))
+                .collect(Collectors.toList());
     }
 
     @Override
